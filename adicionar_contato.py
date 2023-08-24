@@ -1,10 +1,17 @@
 import requests
 
-# URL da rota para adicionar contatos (substitua pela URL correta)
-url = 'https://docs.ikatec.cloud/api/contacts'
+# URL base da API (substitua pela URL correta)
+base_url = 'https://agnuspromotora.digisac.co/api/v1'
+
+# Endpoint para adicionar contatos
+endpoint = '/contacts'
+
+# Token de autenticação (substitua pelo token correto)
+auth_token = 'Bearer e67524a09f3fc9917902eeaf331562a9ba46a8d5'
 
 # Cabeçalhos da requisição
 headers = {
+    'Authorization': auth_token,
     'accept': 'application/json',
     'Content-Type': 'application/json'
 }
@@ -18,23 +25,18 @@ contato = {
     "defaultDepartmentId": "12345678-abcdefghi-1234-abcdefghijkl",
     "defaultUserId": "12345678-abcdefghi-1234-abcdefghijkl",
     "name": "Natã",
-    "internalName": "Natã",
-    "alternativeName": "Natã",
-    "number": "5514999999999"
+    "internalName": "GabrielM",
+    "alternativeName": "GabrielM",
+    "number": "5547991027132"
 }
+
+# URL completa para adicionar o novo contato
+url = base_url + endpoint
 
 # Enviar a requisição POST para adicionar o novo contato
 response = requests.post(url, json=contato, headers=headers)
 
 # Verificar a resposta da requisição
-if response.status_code == 200:
-    print("Contato adicionado com sucesso!")
-    print("Resposta:")
-    print(response.json())
-else:
-    print("Erro ao adicionar contato. Código de status:", response.status_code)
-    print("Resposta:", response.text)
-
 if response.status_code == 200:
     try:
         print("Contato adicionado com sucesso!")
